@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>My uploads</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbarLeft">
+        <div class="brand"><a href="/html/login.html">QR Uploader</a></div>
+      </div>
+
+      <div class="topbarCenter"></div>
+
+      <div class="topbarRight authControls">
+        <span id="userLabel" class="userLabel"></span>
+        <a id="loginLink" class="link" href="/html/login.html">Log in</a>
+        <button id="logoutBtn" class="button small secondary">Log out</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>My uploads</h1>
+
+      <section class="panel">
+        <div id="status" class="status"></div>
+        <div class="linksRow">
+          <a class="link" href="/html/qr.html">← Back</a>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div id="grid" class="grid"></div>
+      </section>
+    </main>
+
+    <script type="module" src="/js/gallery.js"></script>
+  </body>
+</html>

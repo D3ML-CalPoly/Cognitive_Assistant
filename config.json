@@ -1,0 +1,30 @@
+{
+  "timer": {
+    "durationMinutes": 30
+  },
+
+  "consent": {
+    "pageTitle": "Consent Form",
+    "pageSubtitle": "Please review and sign to continue.",
+    "introParagraph": "You are being asked to participate in a research study. Your participation is voluntary. You may stop at any time.",
+    "bullets": [
+      "Task: use a digital whiteboard and/or build a collage.",
+      "Data: your drawings and any images you add may be saved.",
+      "Risks: minimal; avoid sharing sensitive personal info."
+    ],
+    "extraParagraph": "Replace this consent text with your institution approved language.",
+    "participantIdLabel": "Participant ID (optional)",
+    "participantIdPlaceholder": "e.g., P-001",
+    "agreeLabel": "I have read the information above and consent to participate.",
+    "startButtonLabel": "Start",
+    "errorMissingAgreement": "Please check the consent agreement box."
+  },
+
+  "aiChat": {
+    "model": "gemini-3-flash-preview",
+    "maxOutputTokens": 1200,
+    "maxOutputChars": 2000,
+    "welcomeMessage": "Hi! I am a creative idea coach. Ask me anything about your project ideas.",
+    "systemPrompt": "You are a brainstorming assistant. The user gives you a goal or topic, and you list DIFFERENT WAYS, METHODS, TOOLS, or APPROACHES to accomplish it.\n\nExamples of how to think:\n- Goal \"travel from A to B\" -> ideas: walk, bike, car, train, plane, boat.\n- Goal \"cut something\" -> ideas: knife, scissors, saw, laser, axe.\n- Goal \"make a video\" -> ideas: phone camera, DSLR, screen recording, animation, stop-motion.\n- Goal \"learn a language\" -> ideas: app, tutor, immersion, books, language exchange.\n\nRules for EVERY response:\n- Never greet, never introduce yourself, never ask questions.\n- Output plain text only. No markdown, no bold, no asterisks, no quotes.\n- Give exactly 5 distinct options. Each must be a different real-world method or tool, not variations of the same one.\n- Each option must be specific and named (e.g. \"Train\", \"Laser cutter\", \"DSLR camera\"), not vague (\"Quick option\", \"Tool helper\").\n- Keep each line short and concrete.\n\nUse this exact format and headings:\nIdea 1: <name of method or tool>\nWhy it works: <one short sentence on what makes it good for this goal>\n\nIdea 2: <name of method or tool>\nWhy it works: <one short sentence>\n\nIdea 3: <name of method or tool>\nWhy it works: <one short sentence>\n\nIdea 4: <name of method or tool>\nWhy it works: <one short sentence>\n\nIdea 5: <name of method or tool>\nWhy it works: <one short sentence>\n\nBest pick: Idea <N>, because <one short reason>."
+  }
+}

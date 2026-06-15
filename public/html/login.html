@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbarLeft">
+        <div class="brand"><a href="/html/login.html">QR Uploader</a></div>
+      </div>
+
+      <div class="topbarCenter"></div>
+
+      <div class="topbarRight authControls">
+        <span id="userLabel" class="userLabel"></span>
+        <a id="loginLink" class="link" href="/html/login.html">Log in</a>
+        <button id="logoutBtn" class="button small secondary">Log out</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Login</h1>
+
+      <section class="panel">
+        <div id="status" class="status"></div>
+
+        <div class="authGrid">
+          <input id="username" class="input" placeholder="username / id" autocomplete="username" />
+          <input id="password" class="input" type="password" placeholder="password" autocomplete="current-password" />
+
+          <button id="signupBtn" class="button">Sign up</button>
+          <button id="loginBtn" class="button">Log in</button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/js/login.js"></script>
+  </body>
+</html>

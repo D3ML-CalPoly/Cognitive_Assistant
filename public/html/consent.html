@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Consent</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/workspace.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbarLeft">
+        <div class="brand"><a href="/html/login.html">QR Uploader</a></div>
+      </div>
+
+      <div class="topbarCenter"></div>
+
+      <div class="topbarRight authControls">
+        <span id="userLabel" class="userLabel"></span>
+        <a id="loginLink" class="link" href="/html/login.html">Log in</a>
+        <button id="logoutBtn" class="button small secondary" type="button">Log out</button>
+      </div>
+    </header>
+
+    <main class="consent-page">
+      <section id="consentScreen" class="consent-wrap">
+        <div class="panel consent-card">
+          <div class="header-block">
+            <div>
+              <h1 id="consentTitle" class="text-2xl font-semibold" style="margin: 0;">Consent Form</h1>
+              <p id="consentSubtitle" class="text-sm text-muted mt-1" style="margin: 6px 0 0;">
+                Please review and sign to continue.
+              </p>
+            </div>
+            <button
+              id="devSkipBtn"
+              class="btn-linkish text-sm"
+              type="button"
+              title="Skip for development"
+            >
+              Dev Skip
+            </button>
+          </div>
+
+          <div class="consent-copy">
+            <p id="consentIntro"></p>
+            <ul id="consentBullets"></ul>
+            <p id="consentExtra" style="margin-top: 14px;"></p>
+          </div>
+
+          <div class="consent-field">
+            <label id="participantIdLabel" class="label" for="participantId">Participant ID (optional)</label>
+            <input
+              id="participantId"
+              class="input"
+              type="text"
+              placeholder="e.g., P-001"
+              autocomplete="off"
+            />
+          </div>
+
+          <label class="checkbox-row" for="agreeCheckbox">
+            <input id="agreeCheckbox" type="checkbox" />
+            <span id="consentAgreeLabel">I have read the information above and consent to participate.</span>
+          </label>
+
+          <div id="consentError" class="error-box hidden"></div>
+
+          <div class="footer-row">
+            <div id="consentDate" class="muted-note"></div>
+            <button id="startBtn" class="btn btn-primary" type="button">Start</button>
+          </div>
+        </div>
+
+        <div class="muted-note consent-note">
+          Developer note: consent is stored in localStorage as
+          <span style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;">
+            study_consent_v1
+          </span>.
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/js/consent.js"></script>
+  </body>
+</html>

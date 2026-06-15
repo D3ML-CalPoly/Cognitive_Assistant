@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>QR Upload</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/workspace.css" />
+  </head>
+  <body>
+    <div id="joyrideRoot"></div>
+
+    <header class="topbar">
+      <div class="topbarLeft">
+        <div class="brand"><a href="/html/qr.html">QR Uploader</a></div>
+      </div>
+
+      <div class="topbarCenter">
+        <div class="timerBig" aria-label="session timer">
+          <span id="timerText" class="timerBigText">30:00</span>
+          <button id="pauseBtn" class="button small secondary" type="button">Pause</button>
+          <button id="endBtn" class="button small danger" type="button">End</button>
+        </div>
+      </div>
+
+      <div class="topbarRight authControls">
+        <a id="myUploadsLink" class="link" href="/html/gallery.html">My uploads</a>
+        <button id="helpBtn" class="button small secondary" type="button">Help</button>
+        <span id="userLabel" class="userLabel"></span>
+        <a id="loginLink" class="link" href="/html/login.html">Log in</a>
+        <button id="logoutBtn" class="button small secondary" type="button">Log out</button>
+      </div>
+    </header>
+
+    <main class="container workspacePage">
+      <div class="pageSwitchRow" aria-label="page switcher">
+        <button id="showQrViewBtn" class="button small active" type="button">QR Connect</button>
+        <!-- <button id="showWorkspaceViewBtn" class="button small secondary" type="button">Workspace</button> -->
+      </div>
+
+      <section id="qrView" class="viewSection qrConnectLayout">
+        <aside class="chatBox" aria-label="AI chat">
+          <div class="chatHeader">
+            <div class="chatTitle">AI Assistant</div>
+            <button id="chatClearBtn" class="button small secondary" type="button">Clear</button>
+          </div>
+
+          <div id="chatMessages" class="chatMessages" aria-live="polite"></div>
+
+          <form id="chatForm" class="chatForm">
+            <input
+              id="chatInput"
+              class="chatInput"
+              type="text"
+              placeholder="Ask the AI..."
+              autocomplete="off"
+            />
+            <button id="chatSendBtn" class="button small" type="submit">Send</button>
+          </form>
+        </aside>
+
+        <section class="panel connectPanel">
+          <div class="connectPanelHeader">
+            <div>
+              <h2>Connect Phone</h2>
+              <p class="connectPanelSub">Scan the QR code with your phone, or click it to open the upload page.</p>
+            </div>
+          </div>
+
+          <div id="status" class="status" aria-live="polite"></div>
+
+          <div class="qrRow">
+            <div>
+              <div id="qr" class="qrBox" role="link" tabindex="0" aria-label="Open upload page"></div>
+              <div class="qrHint muted-note">Tap or scan to open upload</div>
+            </div>
+
+            <div class="preview">
+              <div class="previewTitle">Latest uploaded image (this session)</div>
+              <img id="resultImg" alt="Latest uploaded image preview" />
+            </div>
+          </div>
+
+          <div class="recentUploadsSection">
+            <div class="recentUploadsHeader">
+              <div class="previewTitle">Your recent uploads</div>
+              <a class="link" href="/html/gallery.html">View all</a>
+            </div>
+            <div id="recentUploadsStatus" class="status" aria-live="polite"></div>
+            <div id="recentUploadsGrid" class="grid recentUploadsGrid"></div>
+          </div>
+        </section>
+      </section>
+
+      <section id="workspaceView" class="viewSection hidden workspaceLayoutWithChat">
+        <aside class="chatBox" aria-label="AI chat workspace">
+          <div class="chatHeader">
+            <div class="chatTitle">AI Assistant</div>
+            <button id="workspaceChatClearBtn" class="button small secondary" type="button">Clear</button>
+          </div>
+
+          <div id="workspaceChatMessages" class="chatMessages" aria-live="polite"></div>
+
+          <form id="workspaceChatForm" class="chatForm">
+            <input
+              id="workspaceChatInput"
+              class="chatInput"
+              type="text"
+              placeholder="Ask the AI..."
+              autocomplete="off"
+            />
+            <button id="workspaceChatSendBtn" class="button small" type="submit">Send</button>
+          </form>
+        </aside>
+
+        <div id="workspaceBoardShell" class="container-lg board-shell">
+          <div class="toolbar-grid workspace-unified-grid">
+            <aside class="panel sidebar">
+              <div class="toolbar-row mb-3 flex-wrap">
+                <button id="wsDrawBtn" class="btn btn-tool active" type="button">Draw</button>
+                <button id="wsEraseBtn" class="btn btn-tool" type="button">Erase</button>
+                <!-- <button id="wsTextBtn" class="btn btn-tool" type="button" title="Edit or move text boxes">Text</button> -->
+                <button id="wsArrangeBtn" class="btn btn-tool" type="button">Arrange</button>
+                <button id="wsClearBtn" class="btn btn-danger-soft ml-auto" type="button">Clear</button>
+              </div>
+
+              <div class="mb-3">
+                <label class="label" for="wsColor">Brush color</label>
+                <input id="wsColor" class="color-input" type="color" value="#111827" />
+              </div>
+
+              <div class="mb-3">
+                <label class="label" for="wsSize">Brush size</label>
+                <input id="wsSize" class="range" type="range" min="1" max="50" value="4" />
+                <div id="wsSizeValue" class="text-sm text-muted">4px</div>
+              </div>
+
+              <div class="row gap-2 mb-3">
+                <button id="wsUndoBtn" class="btn flex-1" type="button">Undo</button>
+                <button id="wsRedoBtn" class="btn flex-1" type="button">Redo</button>
+              </div>
+
+              <div class="mt-4">
+                <label class="label">Text boxes</label>
+                <div class="row gap-2 mt-2">
+                  <button id="wsAddTextBtn" class="btn flex-1" type="button">Add text</button>
+                  <button id="wsDeleteTextBtn" class="btn" type="button" disabled>Delete</button>
+                </div>
+                <div class="muted-note mt-2">Use Text mode to edit and drag boxes; Draw mode draws above images.</div>
+              </div>
+
+              <div class="mt-4">
+                <div class="label" style="margin-bottom: 8px;">Add images</div>
+                <input id="wsFileInput" type="file" accept="image/*" />
+                <div class="muted-note mt-2">From your computer — tip: Quickbeam for phone photos.</div>
+              </div>
+
+              <div class="mt-5">
+                <div class="label" style="margin-bottom: 8px;">Image URL</div>
+                <input id="wsWebImageUrl" class="input" placeholder="Paste direct image URL (https://...)" />
+                <div id="wsWebImageError" class="text-xs text-danger mt-2 hidden"></div>
+                <div class="row gap-2 mt-2">
+                  <button id="wsAddUrlBtn" class="btn flex-1" type="button">Add URL image</button>
+                  <a href="https://www.google.com/imghp" target="_blank" rel="noreferrer" class="btn text-sm" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">Search</a>
+                </div>
+                <div class="muted-note mt-2">Some sites block loading due to CORS.</div>
+              </div>
+
+              <div class="mt-5">
+                <div class="label" style="margin-bottom: 8px;">Selected image</div>
+                <button id="wsDeleteImageBtn" class="btn" type="button" disabled style="width: 100%;">Delete image</button>
+                <div class="muted-note mt-2">Arrange mode: drag images and use the corner handle to resize.</div>
+              </div>
+
+              <div class="mt-5">
+                <button id="wsExportBtn" class="btn btn-primary" type="button" style="width: 100%;">Export PNG</button>
+              </div>
+            </aside>
+
+            <section class="panel stage-panel">
+              <div class="row items-center justify-between mb-2">
+                <div class="text-sm text-muted">Board</div>
+                <div id="wsModeLabel" class="muted-note">Mode: draw</div>
+              </div>
+
+              <div id="uniContainer" class="canvas-stage workspace-uni-stage">
+                <div class="workspace-stage-bg" aria-hidden="true"></div>
+                <div id="uniImageLayer" class="overlay-layer image-layer"></div>
+                <canvas id="uniCanvas" class="overlay-layer draw-layer-top"></canvas>
+                <div id="uniTextLayer" class="overlay-layer workspace-text-layer"></div>
+              </div>
+
+              <div class="muted-note mt-4">
+                One board: images underneath, ink on top, text on top of everything. Erase paints white like a marker on paper.
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script type="module" src="/js/qr.js"></script>
+  </body>
+</html>

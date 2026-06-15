@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Upload Image</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Upload an image</h1>
+
+      <section class="panel">
+        <div id="uploadStatus" class="status"></div>
+
+        <form id="uploadForm">
+          <input id="fileInput" type="file" accept="image/*" class="input" />
+          <button class="button" type="submit">Upload</button>
+        </form>
+
+        <div class="preview">
+          <div class="previewTitle">Preview</div>
+          <img id="previewImg" alt="Preview" />
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/js/upload.js"></script>
+  </body>
+</html>
